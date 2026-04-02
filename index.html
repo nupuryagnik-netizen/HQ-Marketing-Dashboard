@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marketing Intelligence Brief — Horizon Quantum</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f3; color: #1a1a18; padding: 2rem; }
+  h1 { font-size: 20px; font-weight: 500; margin-bottom: 4px; }
+  .subtitle { font-size: 13px; color: #888; margin-bottom: 1.5rem; }
+  .badge { display: inline-block; font-size: 11px; padding: 3px 10px; border-radius: 20px; background: #eaf3de; color: #3B6D11; font-weight: 500; margin-left: 10px; vertical-align: middle; }
+  .section-label { font-size: 11px; font-weight: 500; color: #aaa; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px; }
+  .card { background: #fff; border: 1px solid #e8e8e4; border-radius: 12px; padding: 1.25rem; margin-bottom: 1rem; }
+  .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 1rem; }
+  .metric { background: #f5f5f3; border-radius: 8px; padding: 14px 16px; }
+  .metric-label { font-size: 12px; color: #888; margin-bottom: 6px; }
+  .metric-value { font-size: 24px; font-weight: 500; }
+  .metric-delta { font-size: 12px; margin-top: 4px; }
+  .up { color: #3B6D11; } .down { color: #A32D2D; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 1rem; }
+  .sources { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1.25rem; }
+  .pill { font-size: 12px; padding: 5px 12px; border-radius: 20px; border: 1px solid #e8e8e4; background: #fff; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+  .pill.on { background: #e6f1fb; border-color: #85b7eb; color: #0C447C; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; }
+  .insight { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid #f0f0ec; }
+  .insight:last-child { border-bottom: none; padding-bottom: 0; }
+  .icon { width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
+  .insight-text { font-size: 13px; line-height: 1.6; }
+  .insight-source { font-size: 11px; color: #aaa; margin-top: 3px; }
+  .tag { font-size: 11px; padding: 2px 7px; border-radius: 5px; margin-left: 4px; }
+  .t-g { background: #eaf3de; color: #3B6D11; }
+  .t-y { background: #faeeda; color: #854F0B; }
+  .t-b { background: #e6f1fb; color: #185FA5; }
+  .bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .bar-label { font-size: 12px; color: #666; width: 95px; flex-shrink: 0; }
+  .track { flex: 1; height: 6px; background: #f0f0ec; border-radius: 3px; overflow: hidden; }
+  .fill { height: 100%; border-radius: 3px; }
+  .bar-n { font-size: 12px; color: #aaa; width: 24px; text-align: right; }
+  .schedule { display: flex; justify-content: space-between; align-items: center; }
+  select, button { font-size: 13px; padding: 6px 12px; border-radius: 8px; border: 1px solid #e8e8e4; background: #fff; cursor: pointer; }
+  button { font-weight: 500; }
+  button:hover { background: #f5f5f3; }
+  .divider { height: 1px; background: #f0f0ec; margin: 1rem 0; }
+  .sched-meta { font-size: 12px; color: #aaa; display: flex; gap: 20px; }
+  canvas { display: block; }
+  .chart-wrap { position: relative; height: 180px; width: 100%; }
+  .legend { display: flex; gap: 14px; font-size: 12px; color: #888; margin-bottom: 10px; }
+  .leg-dot { width: 10px; height: 10px; border-radius: 2px; display: inline-block; margin-right: 4px; }
+</style>
+</head>
+<body>
+
+<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
+  <h1>Marketing intelligence brief <span class="badge">Live</span></h1>
+</div>
+<p class="subtitle">Horizon Quantum · Wednesday, 1 April 2026</p>
+
+<div class="section-label">Connected sources</div>
+<div class="sources">
+  <div class="pill on"><span class="dot" style="background:#378ADD"></span>LinkedIn</div>
+  <div class="pill on"><span class="dot" style="background:#D4537E"></span>X / Twitter</div>
+  <div class="pill on"><span class="dot" style="background:#1D9E75"></span>Website</div>
+  <div class="pill on"><span class="dot" style="background:#BA7517"></span>Blog</div>
+  <div class="pill on"><span class="dot" style="background:#7F77DD"></span>Press mentions</div>
+  <div class="pill"><span class="dot" style="background:#ccc"></span>+ Add source</div>
+</div>
+
+<div class="metrics">
+  <div class="metric">
+    <div class="metric-label">Total reach today</div>
+    <div class="metric-value">84.2K</div>
+    <div class="metric-delta up">↑ +12% vs yesterday</div>
+  </div>
+  <div class="metric">
+    <div class="metric-label">Brand mentions</div>
+    <div class="metric-value">47</div>
+    <div class="metric-delta up">↑ +8 new today</div>
+  </div>
+  <div class="metric">
+    <div class="metric-label">Website sessions</div>
+    <div class="metric-value">1,840</div>
+    <div class="metric-delta down">↓ -3% vs yesterday</div>
+  </div>
+  <div class="metric">
+    <div class="metric-label">Engagement rate</div>
+    <div class="metric-value">4.7%</div>
+    <div class="metric-delta up">↑ +0.4pts</div>
+  </div>
+</div>
+
+<div class="grid2">
+  <div class="card">
+    <div class="section-label">Reach this week</div>
+    <div class="chart-wrap"><canvas id="reachChart"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="section-label">Mention sources</div>
+    <div style="margin-top:6px;">
+      <div class="bar-row"><span class="bar-label">Press & news</span><div class="track"><div class="fill" style="width:72%;background:#378ADD"></div></div><span class="bar-n">34</span></div>
+      <div class="bar-row"><span class="bar-label">LinkedIn</span><div class="track"><div class="fill" style="width:45%;background:#7F77DD"></div></div><span class="bar-n">21</span></div>
+      <div class="bar-row"><span class="bar-label">X / Twitter</span><div class="track"><div class="fill" style="width:30%;background:#D4537E"></div></div><span class="bar-n">14</span></div>
+      <div class="bar-row"><span class="bar-label">Blogs & forums</span><div class="track"><div class="fill" style="width:17%;background:#1D9E75"></div></div><span class="bar-n">8</span></div>
+      <div class="bar-row"><span class="bar-label">Podcasts</span><div class="track"><div class="fill" style="width:8%;background:#BA7517"></div></div><span class="bar-n">4</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="section-label">Today's AI-generated insights</div>
+  <div class="insight">
+    <div class="icon" style="background:#eaf3de;">📈</div>
+    <div>
+      <div class="insight-text">The Nasdaq listing is still generating strong earned media — 18 new press mentions today, mostly positive sentiment around the $120M raise and Singapore HQ angle.</div>
+      <div class="insight-source">TechCrunch, CNBC, Business Times <span class="tag t-g">Positive</span></div>
+    </div>
+  </div>
+  <div class="insight">
+    <div class="icon" style="background:#e6f1fb;">💬</div>
+    <div>
+      <div class="insight-text">Triple Alpha is trending on developer forums — 3 Hacker News & Reddit threads on the Beryllium launch. Sentiment is curious but sceptical — requests for more documentation.</div>
+      <div class="insight-source">Hacker News, Reddit r/QuantumComputing <span class="tag t-y">Action needed</span></div>
+    </div>
+  </div>
+  <div class="insight">
+    <div class="icon" style="background:#faeeda;">⚠️</div>
+    <div>
+      <div class="insight-text">Competitor Xanadu mentioned 2× more than Horizon Quantum on X today due to their Nvidia partnership announcement. Consider a response content piece.</div>
+      <div class="insight-source">X / Twitter analysis <span class="tag t-y">Monitor</span></div>
+    </div>
+  </div>
+  <div class="insight">
+    <div class="icon" style="background:#f5f5f3;">👤</div>
+    <div>
+      <div class="insight-text">CEO Joe Fitzsimons' CNBC appearance is still driving LinkedIn growth — company page up 340 followers this week, above the monthly average of 280.</div>
+      <div class="insight-source">LinkedIn analytics <span class="tag t-g">Positive</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="schedule">
+    <div class="section-label" style="margin:0;">Report schedule</div>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <select>
+        <option>Daily — 8:00 AM</option>
+        <option>Twice daily</option>
+        <option>Weekly digest</option>
+      </select>
+      <button>Run now →</button>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="sched-meta">
+    <span>Last run: today 8:00 AM</span>
+    <span>Next run: tomorrow 8:00 AM</span>
+    <span>Delivered to: Slack + email</span>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+new Chart(document.getElementById('reachChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+    datasets: [{
+      data: [52000, 61000, 58000, 74000, 84200, 43000, 38000],
+      backgroundColor: '#378ADD',
+      borderRadius: 4,
+      borderSkipped: false
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { grid: { display: false }, ticks: { font: { size: 11 }, color: '#888' } },
+      y: {
+        grid: { color: 'rgba(0,0,0,0.06)' },
+        ticks: {
+          font: { size: 11 }, color: '#888',
+          callback: v => v >= 1000 ? Math.round(v/1000) + 'K' : v
+        }
+      }
+    }
+  }
+});
+</script>
+</body>
+</html>
